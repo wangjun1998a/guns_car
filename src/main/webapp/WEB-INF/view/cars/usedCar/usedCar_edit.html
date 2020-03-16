@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="编号" value="${item.id}" underline="true"/>
+                            <#input id="name" name="名称" value="${item.name}" underline="true"/>
+                            <#input id="usedImg" name="已使用年限" value="${item.usedImg}" underline="true"/>
+                            <#input id="traveled" name="已行驶公里数" value="${item.traveled}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="inspection" name="年检证件" value="${item.inspection}" underline="true"/>
+                            <#input id="drivingLicense" name="行驶证" value="${item.drivingLicense}" underline="true"/>
+                            <#input id="insurance" name="保险" value="${item.insurance}" underline="true"/>
+                            <#input id="maintenanceRecord" name="保养维修记录" value="${item.maintenanceRecord}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UsedCarInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UsedCarInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/cars/usedCar/usedCar_info.js"></script>
+@}

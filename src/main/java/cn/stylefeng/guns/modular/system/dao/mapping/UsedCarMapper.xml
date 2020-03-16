@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.UsedCarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.UsedCar">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="used_img" property="usedImg" />
+        <result column="traveled" property="traveled" />
+        <result column="inspection" property="inspection" />
+        <result column="driving_license" property="drivingLicense" />
+        <result column="insurance" property="insurance" />
+        <result column="maintenance_record" property="maintenanceRecord" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, used_img, traveled, inspection, driving_license, insurance, maintenance_record
+    </sql>
+
+</mapper>
