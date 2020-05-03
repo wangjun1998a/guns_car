@@ -1,5 +1,10 @@
 package cn.stylefeng.guns.modular.transaction.controller;
 
+import cn.stylefeng.guns.modular.transaction.model.ChatInfo;
+import cn.stylefeng.guns.modular.transaction.model.EmpInfo;
+import cn.stylefeng.guns.modular.transaction.model.FriendInfo;
+import cn.stylefeng.guns.modular.transaction.service.EmpInfoService;
+import cn.stylefeng.guns.modular.transaction.service.FriendInfoService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +16,9 @@ import cn.stylefeng.guns.core.log.LogObjectHolder;
 import org.springframework.web.bind.annotation.RequestParam;
 import cn.stylefeng.guns.modular.system.model.Transaction;
 import cn.stylefeng.guns.modular.transaction.service.ITransactionService;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 车辆交易控制器
@@ -26,6 +34,12 @@ public class TransactionController extends BaseController {
 
     @Autowired
     private ITransactionService transactionService;
+
+    @Autowired
+    private FriendInfoService friendInfoService;
+
+    @Autowired
+    private EmpInfoService empInfoService;
 
     /**
      * 跳转到车辆交易首页
@@ -49,7 +63,7 @@ public class TransactionController extends BaseController {
     @RequestMapping("/transaction_update/{transactionId}")
     public String transactionUpdate(@PathVariable Integer transactionId, Model model) {
         Transaction transaction = transactionService.selectById(transactionId);
-        model.addAttribute("item",transaction);
+        model.addAttribute("item", transaction);
         LogObjectHolder.me().set(transaction);
         return PREFIX + "transaction_edit.html";
     }
@@ -100,5 +114,28 @@ public class TransactionController extends BaseController {
     @ResponseBody
     public Object detail(@PathVariable("transactionId") Integer transactionId) {
         return transactionService.selectById(transactionId);
+    }
+
+    /**
+     * 获取登录信息
+     */
+    @RequestMapping(value = "/getUserId")
+    @ResponseBody
+    public Object getUserId() {
+        return transactionService.getUserId();
+    }
+
+    @RequestMapping("/findChatInfo")
+    @ResponseBody
+    public ChatInfo findChatInfo() {
+        List<FriendInfo> friendInfos = friendInfoService.findFriendInfos();
+        EmpInfo mine = empInfoService.findMine();
+        ChatInfo chatInfo = new ChatInfo();
+        chatInfo.setCode(0);
+        chatInfo.setMsg("ok");
+        Map map = chatInfo.getData();
+        map.put("mine", mine);
+        map.put("friend", friendInfos);
+        return chatInfo;
     }
 }

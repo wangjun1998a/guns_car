@@ -13,4 +13,10 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface ITransactionService extends IService<Transaction> {
 
+    /**
+     * 获取登录信息
+     *
+     * @return Map(String, Object)
+     */
+    Object getUserId();
 }

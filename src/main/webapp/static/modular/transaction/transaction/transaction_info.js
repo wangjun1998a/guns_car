@@ -97,7 +97,8 @@ TransactionInfoDlg.editSubmit = function () {
 }
 
 $(function () {
-    var avatarUp = new $WebUpload("usedImg");
-    avatarUp.setUploadBarId("progressBar");
-    avatarUp.init();
+    //车辆图片
+    var usedImg = new $WebUpload("usedImg");
+    usedImg.setUploadBarId("progressBar");
+    usedImg.init();
 });
