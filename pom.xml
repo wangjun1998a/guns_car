@@ -10,7 +10,8 @@
     </parent>
 
     <groupId>cn.stylefeng.guns</groupId>
-    <artifactId>guns</artifactId>
+    <!--    <artifactId>guns</artifactId>-->
+    <artifactId>CarsTrade</artifactId>
     <version>1.0.0</version>
 
     <name>guns-admin</name>
