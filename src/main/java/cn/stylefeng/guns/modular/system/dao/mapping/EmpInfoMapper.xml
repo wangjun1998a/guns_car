@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stylefeng.guns.modular.transaction.mapper.EmpInfoMapper">
+    <select id="findMine" resultType="cn.stylefeng.guns.modular.transaction.model.EmpInfo">
+        select id          as id,
+               toId        as toId,
+               username    as username,
+               status      as status,
+               sign        as sign,
+               avatar      as avatar,
+               isLogin     as isLogin,
+               content     as content,
+               type        as type,
+               mine        as mine,
+               timestamp   as timestamp,
+               historyTime as historyTime
+        from guns.friend_link_table flt
+        where flt.id = #{id}
+          and flt.toId is null;
+    </select>
+</mapper>
