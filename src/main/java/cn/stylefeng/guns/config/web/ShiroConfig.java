@@ -32,6 +32,7 @@ import org.apache.shiro.web.servlet.ShiroHttpSession;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
@@ -51,6 +52,8 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+    public ShiroConfig() {
+    }
 
     /**
      * 安全管理器
@@ -175,6 +178,9 @@ public class ShiroConfig {
          *
          */
         Map<String, String> hashMap = new LinkedHashMap<>();
+        hashMap.put("/custom/hello", "anon");
+        hashMap.put("/transaction/user_add", "anon");
+        hashMap.put("/transaction/insertUser", "anon");
         hashMap.put("/static/**", "anon");
         hashMap.put("/gunsApi/**", "anon");
         hashMap.put("/login", "anon");

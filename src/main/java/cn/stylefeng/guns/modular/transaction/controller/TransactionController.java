@@ -7,13 +7,10 @@ import cn.stylefeng.guns.modular.transaction.service.EmpInfoService;
 import cn.stylefeng.guns.modular.transaction.service.FriendInfoService;
 import cn.stylefeng.roses.core.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import cn.stylefeng.guns.core.log.LogObjectHolder;
-import org.springframework.web.bind.annotation.RequestParam;
 import cn.stylefeng.guns.modular.system.model.Transaction;
 import cn.stylefeng.guns.modular.transaction.service.ITransactionService;
 
@@ -27,7 +24,7 @@ import java.util.Map;
  * @Date 2020-03-17 22:01:07
  */
 @Controller
-@RequestMapping("/transaction")
+@RequestMapping(value = "/transaction")
 public class TransactionController extends BaseController {
 
     private String PREFIX = "/transaction/transaction/";
@@ -55,6 +52,27 @@ public class TransactionController extends BaseController {
     @RequestMapping("/transaction_add")
     public String transactionAdd() {
         return PREFIX + "transaction_add.html";
+    }
+
+    /**
+     * 新增用户
+     */
+    @RequestMapping("/user_add")
+    public String addView() {
+        return PREFIX + "user_add.html";
+    }
+
+    /**
+     * 新增用户实现
+     *
+     * @param data data
+     * @return map
+     */
+    @ResponseBody
+    @RequestMapping(value = "/insertUser", method = RequestMethod.POST)
+    public Map<String, Object> insertUser(String data) {
+        return empInfoService.insertUser(data);
+
     }
 
     /**
